@@ -1,0 +1,42 @@
+{% if items > 0 %}
+<script>
+var config = {
+    client_id : "tdlv",
+    amount : {{ subtotal }},
+    params : {
+        page : "cart",
+        variable_amount : "FALSE",
+        multiple_products : "TRUE",
+        is_dark_theme : "FALSE",
+        continue_url : "https://apurata.com/"
+    }
+}
+fetch(`https://apurata.com/pos/pay-with-apurata-add-on/${config.amount}?` + new URLSearchParams(config.params), {
+    headers: {"Client_id": config.client_id}
+}).then(
+    function (response) {
+        return response.text().then(function(text) {
+            document.getElementById("apurata-addon").innerHTML = text;
+        });
+    }
+).catch(err => console.log(err));
+</script>
+
+<div class="container">
+    <div class="col-12">
+        <div class="row justify-content-between align-items-center text-center text-sm-right">
+            <div class="col-12 col-sm-auto my-2">
+            </div>
+            <div class="col-12 col-sm-auto my-2">
+                <p>Para pagar con aCuotaz selecciona transferencia bancaria como método de pago</p>
+            </div>
+        </div>
+        <div class="row justify-content-between align-items-center text-center text-sm-right">
+            <div class="col-12 col-sm-auto my-2">
+            </div>
+            <div class="col-12 col-sm-auto my-2" id="apurata-addon">
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
