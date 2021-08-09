@@ -1,0 +1,22 @@
+<a id="crear-orden" class="btn btn-secondary" target="_blank">
+    Pagar con aCuotaz
+</a>
+<br/>
+<p>
+    Si fuiste aprobado con aCuotaz, envia una captura del código que te mandamos, al correo almacen@tdlv.pe o al WhatsApp 947242752
+</p>
+<div id="apurata-infosteps">
+</div>
+<script>
+fetch(`https://apurata.com/pos/tdlv/info-steps`).then(
+    function (response) {
+        return response.text().then(function(text) {
+            document.getElementById("apurata-infosteps").innerHTML = text;
+        });
+    }
+).catch(err => console.log(err));
+let checkout_page = window.location.href;
+checkout_page = encodeURIComponent(checkout_page);
+const urlAcuotazCrearOrden = 'https://apurata.com/pos/crear-orden-y-continuar?order_id={{checkout.id}}&pos_client_id=tdlv&amount={{checkout.total}}&url_redir_on_canceled='+checkout_page+'&url_redir_on_rejected='+checkout_page+'&customer_data__phone={{checkout.phone}}&customer_data__email='+encodeURIComponent('{{checkout.email}}')+'&customer_data__dni={{checkout.clientCode}}'
+document.getElementById("crear-orden").href = urlAcuotazCrearOrden;
+</script>
