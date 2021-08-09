@@ -1,7 +1,7 @@
 {% if items > 0 %}
 <script>
 var config = {
-    client_id : "tdlv",
+    client_id : "your_client_id",
     amount : {{ subtotal }},
     params : {
         page : "cart",
