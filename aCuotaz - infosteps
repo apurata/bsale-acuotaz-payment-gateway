@@ -11,7 +11,7 @@
 var config = {
     client_id : "your_client_id",
 }
-fetch(`https://apurata.com/pos/${config.amount}/info-steps`).then(
+fetch(`https://apurata.com/pos/${config.client_id}/info-steps`).then(
     function (response) {
         return response.text().then(function(text) {
             document.getElementById("apurata-infosteps").innerHTML = text;
