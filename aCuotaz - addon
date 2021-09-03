@@ -8,7 +8,7 @@ var config = {
         variable_amount : "FALSE",
         multiple_products : "TRUE",
         is_dark_theme : "FALSE",
-        continue_url : "https://apurata.com/"
+        continue_url : "{{canonical_url}}"
     }
 }
 fetch(`https://apurata.com/pos/pay-with-apurata-add-on/${config.amount}?` + new URLSearchParams(config.params), {
